@@ -1,0 +1,13 @@
+#!/bin/bash
+
+#SBATCH -A class
+#SBATCH -N 1
+#SBATCH --exclusive
+#SBATCH --time=00:10:00
+
+#SBATCH -J list_rank
+#SBATCH --error=job.%J.err
+#SBATCH --output=job.%J.out
+
+make clean metrics IMPL=wyllie
+./metrics -t 50 -n 1000000 -o results_wyllie.json
